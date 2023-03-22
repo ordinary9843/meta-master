@@ -33,15 +33,37 @@ use Ordinary9843\MetaMaster;
 
 $metaMaster = new MetaMaster();
 
-// Set connection time (seconds).
+// Set connection time (in seconds).
 $metaMaster->setConnectTimeout(10);
 $metaMaster->setTimeout(10);
 
 // Analyzing the meta tags from website.
 $metaMaster->parse('https://github.com/ordinary9843/meta-master');
+/**
+ * Output: [
+ *  'title' => '',
+ *  'charset' => '',
+ *  'keywords' => '',
+ *  'description' => '',
+ *  'viewport' => '',
+ *  'author' => '',
+ *  'copyright' => '',
+ *  'robots' => '',
+ *  'links' => [],
+ *  'css' => [],
+ *  'js' => [],
+ *  'icons' => [],
+ *  'images' => [],
+ *  'facebook' => [],
+ *  'twitter' => []
+ * ]
+ */
 
 // Get error message.
 $metaMaster->getError();
+/**
+ * Output: Error message.
+ */
 ```
 
 ## Testing
