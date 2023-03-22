@@ -3,6 +3,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
+use Ordinary9843\Constants\MasterConstant;
 use Ordinary9843\Master;
 use GuzzleHttp\Client;
 
@@ -67,6 +68,6 @@ class MasterTest extends TestCase
      */
     public function testUserAgent(): void
     {
-        $this->assertContains($this->master->getUserAgent(), $this->master::USER_AGENTS);
+        $this->assertContains($this->master->getUserAgent(), MasterConstant::USER_AGENTS);
     }
 }
