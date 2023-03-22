@@ -62,7 +62,7 @@ $metaMaster->parse('https://github.com/ordinary9843/meta-master');
 // Get error message.
 $metaMaster->getError();
 /**
- * Output: Error message.
+ * Output: 'Any error message.'
  */
 ```
 
