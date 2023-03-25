@@ -37,9 +37,9 @@ $metaMaster = new MetaMaster();
 $metaMaster->setConnectTimeout(10);
 $metaMaster->setTimeout(10);
 
-// Analyzing the meta tags from website.
-$metaMaster->parse('https://github.com/ordinary9843/meta-master');
 /**
+ * Analyzing the meta tags from website.
+ *
  * Output: [
  *  'title' => '',
  *  'charset' => '',
@@ -58,12 +58,14 @@ $metaMaster->parse('https://github.com/ordinary9843/meta-master');
  *  'twitter' => []
  * ]
  */
+$metaMaster->parse('https://github.com/ordinary9843/meta-master');
 
-// Get error message.
-$metaMaster->getError();
 /**
+ * Get error message.
+ *
  * Output: 'Any error message.'
  */
+$metaMaster->getError();
 ```
 
 ## Testing
