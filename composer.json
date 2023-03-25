@@ -1,6 +1,6 @@
 {
     "name": "ordinary9843/meta-master",
-    "description": "Analyzing the meta tags of a website",
+    "description": "Analyzing and crawling the meta tags of a static website",
     "type": "library",
     "license": "MIT",
     "authors": [

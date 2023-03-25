@@ -5,7 +5,7 @@
 
 ### Intro
 
-Analyzing the meta tags of a website.
+Analyzing and crawling the meta tags of a static website.
 
 ## Requirements
 
