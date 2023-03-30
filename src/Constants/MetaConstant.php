@@ -29,23 +29,11 @@ class MetaConstant
     const ROBOTS = 'robots';
 
     /** @var string */
-    const LINKS = 'links';
-
-    /** @var string */
-    const CSS = 'css';
-
-    /** @var string */
-    const JS = 'js';
-
-    /** @var string */
-    const ICONS = 'icons';
-
-    /** @var string */
-    const IMAGES = 'images';
-
-    /** @var string */
-    const FACEBOOK = 'facebook';
+    const OG = 'og';
 
     /** @var string */
     const TWITTER = 'twitter';
+
+    /** @var string */
+    const ICONS = 'icons';
 }

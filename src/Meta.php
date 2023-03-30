@@ -16,13 +16,9 @@ class Meta
         MetaConstant::AUTHOR => '',
         MetaConstant::COPYRIGHT => '',
         MetaConstant::ROBOTS => '',
-        MetaConstant::LINKS => [],
-        MetaConstant::CSS => [],
-        MetaConstant::JS => [],
-        MetaConstant::ICONS => [],
-        MetaConstant::IMAGES => [],
-        MetaConstant::FACEBOOK => [],
-        MetaConstant::TWITTER => []
+        MetaConstant::OG => [],
+        MetaConstant::TWITTER => [],
+        MetaConstant::ICONS => []
     ];
 
     /**
@@ -178,112 +174,22 @@ class Meta
     }
 
     /**
-     * @param array $links
-     * 
-     * @return void
-     */
-    public function setLinks(array $links): void
-    {
-        $this->meta[MetaConstant::LINKS] = $links;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLinks(): array
-    {
-        return $this->meta[MetaConstant::LINKS];
-    }
-
-    /**
-     * @param array $css
-     * 
-     * @return void
-     */
-    public function setCss(array $css): void
-    {
-        $this->meta[MetaConstant::CSS] = $css;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCss(): array
-    {
-        return $this->meta[MetaConstant::CSS];
-    }
-
-    /**
-     * @param array $js
-     * 
-     * @return void
-     */
-    public function setJs(array $js): void
-    {
-        $this->meta[MetaConstant::JS] = $js;
-    }
-
-    /**
-     * @return array
-     */
-    public function getJs(): array
-    {
-        return $this->meta[MetaConstant::JS];
-    }
-
-    /**
-     * @param array $icons
-     * 
-     * @return void
-     */
-    public function setIcons(array $icons): void
-    {
-        $this->meta[MetaConstant::ICONS] = $icons;
-    }
-
-    /**
-     * @return array
-     */
-    public function getIcons(): array
-    {
-        return $this->meta[MetaConstant::ICONS];
-    }
-
-    /**
-     * @param array $images
-     * 
-     * @return void
-     */
-    public function setImages(array $images): void
-    {
-        $this->meta[MetaConstant::IMAGES] = $images;
-    }
-
-    /**
-     * @return array
-     */
-    public function getImages(): array
-    {
-        return $this->meta[MetaConstant::IMAGES];
-    }
-
-    /**
      * @param string $name
      * @param string $content
      * 
      * @return void
      */
-    public function setFacebook(string $name, string $content): void
+    public function setOg(string $name, string $content): void
     {
-        $this->meta[MetaConstant::FACEBOOK][$name] = $content;
+        $this->meta[MetaConstant::OG][$name] = $content;
     }
 
     /**
      * @return array
      */
-    public function getFacebook(): array
+    public function getOg(): array
     {
-        return $this->meta[MetaConstant::FACEBOOK];
+        return $this->meta[MetaConstant::OG];
     }
 
     /**
@@ -303,6 +209,24 @@ class Meta
     public function getTwitter(): array
     {
         return $this->meta[MetaConstant::TWITTER];
+    }
+
+    /**
+     * @param array $icons
+     * 
+     * @return void
+     */
+    public function setIcons(array $icons): void
+    {
+        $this->meta[MetaConstant::ICONS] = $icons;
+    }
+
+    /**
+     * @return array
+     */
+    public function getIcons(): array
+    {
+        return $this->meta[MetaConstant::ICONS];
     }
 
     /**
@@ -333,7 +257,7 @@ class Meta
                     $this->setRobots($content);
                     break;
                 case substr($name, 0, 3) === 'og:':
-                    $this->setFacebook($name, $content);
+                    $this->setOg($name, $content);
                     break;
                 case substr($name, 0, 8) === 'twitter:':
                     $this->setTwitter($name, $content);
@@ -350,11 +274,7 @@ class Meta
     public function setStaticSources(array $tags): void
     {
         $mapping = [
-            MetaConstant::LINKS => 'setLinks',
-            MetaConstant::CSS => 'setCss',
-            MetaConstant::JS => 'setJs',
-            MetaConstant::ICONS => 'setIcons',
-            MetaConstant::IMAGES => 'setImages',
+            MetaConstant::ICONS => 'setIcons'
         ];
         foreach ($tags as $name => $content) {
             (isset($mapping[$name])) && $this->{$mapping[$name]}($content);

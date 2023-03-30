@@ -49,21 +49,20 @@ $metaMaster->setTimeout(10);
  *  'author' => '',
  *  'copyright' => '',
  *  'robots' => '',
- *  'links' => [],
- *  'css' => [],
- *  'js' => [],
- *  'icons' => [],
- *  'images' => [],
- *  'facebook' => [],
- *  'twitter' => []
+ *  'og' => [],
+ *  'twitter' => [],
+ *  'icons' => []
  * ]
  */
-$metaMaster->parse('https://github.com/ordinary9843/meta-master');
+$metaMaster->parse('https://github.com/ordinary9843');
 
 /**
  * Get error message.
  *
- * Output: 'Any error message.'
+ * Output: [
+ *  '[INFO] Message ...',
+ *  '[ERROR] Message ...',
+ * ]
  */
 $metaMaster->getError();
 ```

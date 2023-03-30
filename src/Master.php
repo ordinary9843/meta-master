@@ -16,8 +16,8 @@ class Master
     /** @var int */
     private $timeout = 5;
 
-    /** @var string */
-    private $error = '';
+    /** @var array */
+    private $error = [];
 
     /** @var array */
     private $userAgents = [];
@@ -92,13 +92,13 @@ class Master
      */
     public function setError(string $error): void
     {
-        $this->error = $error;
+        (!in_array($error, $this->error)) && $this->error[] = $error;
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getError(): string
+    public function getError(): array
     {
         return $this->error;
     }

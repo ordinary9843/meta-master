@@ -35,6 +35,7 @@ class MetaMasterTest extends TestCase
         ];
         foreach ($urls as $url) {
             $meta = $this->metaMaster->parse($url);
+            $this->assertCount(11, $meta);
             $this->assertArrayHasKey(MetaConstant::TITLE, $meta);
             $this->assertArrayHasKey(MetaConstant::CHARSET, $meta);
             $this->assertArrayHasKey(MetaConstant::KEYWORDS, $meta);
@@ -43,13 +44,9 @@ class MetaMasterTest extends TestCase
             $this->assertArrayHasKey(MetaConstant::AUTHOR, $meta);
             $this->assertArrayHasKey(MetaConstant::COPYRIGHT, $meta);
             $this->assertArrayHasKey(MetaConstant::ROBOTS, $meta);
-            $this->assertArrayHasKey(MetaConstant::LINKS, $meta);
-            $this->assertArrayHasKey(MetaConstant::CSS, $meta);
-            $this->assertArrayHasKey(MetaConstant::JS, $meta);
-            $this->assertArrayHasKey(MetaConstant::ICONS, $meta);
-            $this->assertArrayHasKey(MetaConstant::IMAGES, $meta);
-            $this->assertArrayHasKey(MetaConstant::FACEBOOK, $meta);
+            $this->assertArrayHasKey(MetaConstant::OG, $meta);
             $this->assertArrayHasKey(MetaConstant::TWITTER, $meta);
+            $this->assertArrayHasKey(MetaConstant::ICONS, $meta);
         }
 
         $this->metaMaster->parse('google.com');

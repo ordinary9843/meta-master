@@ -60,7 +60,9 @@ class MasterTest extends TestCase
 
         $error = 'test-error';
         $this->master->setError($error);
-        $this->assertEquals($error, $this->master->getError());
+        $this->assertEquals([
+            $error
+        ], $this->master->getError());
     }
 
     /**
