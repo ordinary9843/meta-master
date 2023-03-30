@@ -56,35 +56,20 @@ class MetaMaster extends Master
     }
 
     /**
-     * @param string $url
      * @param string $html
      * 
      * @return array
      */
-    private function parseStaticSourcesFromTag(string $url, string $html): array
+    public function parseHtml(string $html): array
     {
-        preg_match_all('/<(link)[^>]*>/i', $html, $matches);
-        $baseUrl = $this->parseBaseUrl($url);
-        $staticSources = array_reduce($matches[0] ?? [], function ($result, $tag) use ($baseUrl) {
-            if (substr($tag, 0, 5) === '<link') {
-                preg_match('/<link.*?rel="(.*?)".*?href="(.*?)".*?>/is', $tag, $matches);
-                $rel = $matches[1] ?? '';
-                $href = trim($matches[2] ?? '', '/');
-                if ($rel && $href) {
-                    (!$this->hasScheme($href)) && $href = $baseUrl . $href;
-                    if (strpos($rel, 'icon') !== false || in_array($rel, ['shortcut'])) {
-                        $result[MetaConstant::ICONS][] = $href;
-                    }
-                }
-            }
+        $meta = new Meta();
+        if (!empty($html)) {
+            $meta->setTitle($this->parseTitleFromTag($html));
+            $meta->setCharset($this->parseCharsetFromTag($html));
+            $meta->setMeta($this->parseMetaFromTag($html));
+        }
 
-            return $result;
-        }, [
-            MetaConstant::ICONS => []
-        ]);
-        $staticSources[MetaConstant::ICONS] = array_values(array_unique($staticSources[MetaConstant::ICONS]));
-
-        return $staticSources;
+        return $meta->get();
     }
 
     /**
@@ -94,30 +79,24 @@ class MetaMaster extends Master
      */
     public function parse(string $url): array
     {
-        $meta = new Meta();
+        $html = '';
 
         try {
             if (!$this->isValidUrl($url)) {
                 throw new Exception($url . ' is not a valid URL.');
             }
 
-            $contents = $this->getClient()->get($url, [
+            $html = $this->getClient()->get($url, [
                 'headers' => [
                     'User-Agent' => $this->getUserAgent()
                 ]
             ])->getBody()->getContents();
-            if (!empty($contents)) {
-                $meta->setTitle($this->parseTitleFromTag($contents));
-                $meta->setCharset($this->parseCharsetFromTag($contents));
-                $meta->setMeta($this->parseMetaFromTag($contents));
-                $meta->setStaticSources($this->parseStaticSourcesFromTag($url, $contents));
-            }
         } catch (ConnectException $e) {
             $this->setError('[ERROR] ' . $e->getMessage());
         } catch (Exception $e) {
             $this->setError('[ERROR] ' . $e->getMessage());
         }
 
-        return $meta->get();
+        return $this->parseHtml($html);
     }
 }

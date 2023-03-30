@@ -50,8 +50,7 @@ $metaMaster->setTimeout(10);
  *  'copyright' => '',
  *  'robots' => '',
  *  'og' => [],
- *  'twitter' => [],
- *  'icons' => []
+ *  'twitter' => []
  * ]
  */
 $metaMaster->parse('https://github.com/ordinary9843');

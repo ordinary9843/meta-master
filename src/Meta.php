@@ -17,8 +17,7 @@ class Meta
         MetaConstant::COPYRIGHT => '',
         MetaConstant::ROBOTS => '',
         MetaConstant::OG => [],
-        MetaConstant::TWITTER => [],
-        MetaConstant::ICONS => []
+        MetaConstant::TWITTER => []
     ];
 
     /**
@@ -212,24 +211,6 @@ class Meta
     }
 
     /**
-     * @param array $icons
-     * 
-     * @return void
-     */
-    public function setIcons(array $icons): void
-    {
-        $this->meta[MetaConstant::ICONS] = $icons;
-    }
-
-    /**
-     * @return array
-     */
-    public function getIcons(): array
-    {
-        return $this->meta[MetaConstant::ICONS];
-    }
-
-    /**
      * @param array $tags
      * 
      * @return void
@@ -263,21 +244,6 @@ class Meta
                     $this->setTwitter($name, $content);
                     break;
             }
-        }
-    }
-
-    /**
-     * @param array $tags
-     * 
-     * @return void
-     */
-    public function setStaticSources(array $tags): void
-    {
-        $mapping = [
-            MetaConstant::ICONS => 'setIcons'
-        ];
-        foreach ($tags as $name => $content) {
-            (isset($mapping[$name])) && $this->{$mapping[$name]}($content);
         }
     }
 }

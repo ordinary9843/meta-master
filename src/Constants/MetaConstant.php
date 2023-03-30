@@ -33,7 +33,4 @@ class MetaConstant
 
     /** @var string */
     const TWITTER = 'twitter';
-
-    /** @var string */
-    const ICONS = 'icons';
 }

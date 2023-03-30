@@ -28,7 +28,7 @@ class MetaTest extends TestCase
     public function testGet(): void
     {
         $meta = $this->meta->get();
-        $this->assertCount(11, $meta);
+        $this->assertCount(10, $meta);
         $this->assertArrayHasKey(MetaConstant::TITLE, $meta);
         $this->assertArrayHasKey(MetaConstant::CHARSET, $meta);
         $this->assertArrayHasKey(MetaConstant::KEYWORDS, $meta);
@@ -39,7 +39,6 @@ class MetaTest extends TestCase
         $this->assertArrayHasKey(MetaConstant::ROBOTS, $meta);
         $this->assertArrayHasKey(MetaConstant::OG, $meta);
         $this->assertArrayHasKey(MetaConstant::TWITTER, $meta);
-        $this->assertArrayHasKey(MetaConstant::ICONS, $meta);
     }
 
     /**
@@ -147,20 +146,6 @@ class MetaTest extends TestCase
     /**
      * @return void
      */
-    public function testIcons(): void
-    {
-        $icons = [
-            'http://test.com/test-a.ico',
-            'http://test.com/test-b.ico',
-            'http://test.com/test-c.ico',
-        ];
-        $this->meta->setIcons($icons);
-        $this->assertEquals($icons, $this->meta->getIcons());
-    }
-
-    /**
-     * @return void
-     */
     public function testMeta(): void
     {
         $keywords = 'test-keyword-a, test-keyword-b, test-keyword-c';
@@ -191,21 +176,5 @@ class MetaTest extends TestCase
         $this->assertEquals([
             'twitter:card' => 'test-summary',
         ], $this->meta->getTwitter());
-    }
-
-    /**
-     * @return void
-     */
-    public function testStaticSources(): void
-    {
-        $icons = [
-            'http://test.com/test-a.ico',
-            'http://test.com/test-b.ico',
-            'http://test.com/test-c.ico',
-        ];
-        $this->meta->setStaticSources([
-            MetaConstant::ICONS => $icons
-        ]);
-        $this->assertEquals($icons, $this->meta->getIcons());
     }
 }

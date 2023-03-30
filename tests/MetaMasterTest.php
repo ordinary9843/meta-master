@@ -25,17 +25,37 @@ class MetaMasterTest extends TestCase
     /**
      * @return void
      */
+    public function testParseHtml(): void
+    {
+        $html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>example</title></head><body><h1>example</h1></body></html>';
+        $meta = $this->metaMaster->parseHtml($html);
+        $this->assertCount(10, $meta);
+        $this->assertArrayHasKey(MetaConstant::TITLE, $meta);
+        $this->assertArrayHasKey(MetaConstant::CHARSET, $meta);
+        $this->assertArrayHasKey(MetaConstant::KEYWORDS, $meta);
+        $this->assertArrayHasKey(MetaConstant::DESCRIPTION, $meta);
+        $this->assertArrayHasKey(MetaConstant::VIEWPORT, $meta);
+        $this->assertArrayHasKey(MetaConstant::AUTHOR, $meta);
+        $this->assertArrayHasKey(MetaConstant::COPYRIGHT, $meta);
+        $this->assertArrayHasKey(MetaConstant::ROBOTS, $meta);
+        $this->assertArrayHasKey(MetaConstant::OG, $meta);
+        $this->assertArrayHasKey(MetaConstant::TWITTER, $meta);
+    }
+
+    /**
+     * @return void
+     */
     public function testParse(): void
     {
         $urls = [
-            'https://github.com/ordinary9843/meta-master',
+            'https://github.com/ordinary9843',
             'https://www.google.com',
             'https://www.youtube.com',
             'https://www.facebook.com'
         ];
         foreach ($urls as $url) {
             $meta = $this->metaMaster->parse($url);
-            $this->assertCount(11, $meta);
+            $this->assertCount(10, $meta);
             $this->assertArrayHasKey(MetaConstant::TITLE, $meta);
             $this->assertArrayHasKey(MetaConstant::CHARSET, $meta);
             $this->assertArrayHasKey(MetaConstant::KEYWORDS, $meta);
@@ -46,7 +66,6 @@ class MetaMasterTest extends TestCase
             $this->assertArrayHasKey(MetaConstant::ROBOTS, $meta);
             $this->assertArrayHasKey(MetaConstant::OG, $meta);
             $this->assertArrayHasKey(MetaConstant::TWITTER, $meta);
-            $this->assertArrayHasKey(MetaConstant::ICONS, $meta);
         }
 
         $this->metaMaster->parse('google.com');
