@@ -32,6 +32,9 @@ trait MasterTrait
     public function parseBaseUrl(string $url): string
     {
         $parseUrl = parse_url($url);
+        if (!isset($parseUrl['scheme']) || !isset($parseUrl['host'])) {
+            return $url;
+        }
 
         return $parseUrl['scheme'] . '://' . $parseUrl['host'];
     }
