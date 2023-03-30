@@ -36,4 +36,14 @@ class MasterTraitTest extends TestCase
         $this->assertTrue($this->isValidUrl('https://google.com'));
         $this->assertFalse($this->isValidUrl('google.com'));
     }
+
+    /**
+     * @return void
+     */
+    public function testParseBaseUrl(): void
+    {
+        $this->assertEquals('http://google.com', $this->parseBaseUrl('http://google.com'));
+        $this->assertEquals('https://google.com', $this->parseBaseUrl('https://google.com'));
+        $this->assertEquals('google.com', $this->parseBaseUrl('google.com'));
+    }
 }
