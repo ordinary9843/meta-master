@@ -2,7 +2,6 @@
 
 namespace Ordinary9843;
 
-use Ordinary9843\Constants\MetaConstant;
 use Ordinary9843\Traits\MasterTrait;
 use GuzzleHttp\Exception\ConnectException;
 use Exception;
