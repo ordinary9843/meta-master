@@ -33,9 +33,11 @@ use Ordinary9843\MetaMaster;
 
 $metaMaster = new MetaMaster();
 
-// Set connection time (in seconds).
-$metaMaster->setConnectTimeout(10);
-$metaMaster->setTimeout(10);
+/**
+ * Set connection time (in seconds).
+ */
+$metaMaster->setConnectTimeout(5);
+$metaMaster->setTimeout(5);
 
 /**
  * Analyzing the meta tags from website.
