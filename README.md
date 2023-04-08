@@ -1,4 +1,4 @@
-# MetaMaster
+# Meta Master
 
 [![build](https://github.com/ordinary9843/meta-master/actions/workflows/build.yml/badge.svg)](https://github.com/ordinary9843/meta-master/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/ordinary9843/meta-master/branch/master/graph/badge.svg?token=QKCE7LJISZ)](https://codecov.io/gh/ordinary9843/meta-master)
@@ -60,7 +60,7 @@ $metaMaster->parse('https://github.com/ordinary9843');
  *
  * Output: [
  *  '[INFO] Message ...',
- *  '[ERROR] Message ...',
+ *  '[ERROR] Message ...'
  * ]
  */
 $metaMaster->getError();
