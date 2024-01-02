@@ -1,0 +1,30 @@
+name: build
+on:
+  push:
+    branches: [master]
+jobs:
+  run:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ["7.1", "7.2", "7.3", "7.4", "8.0"]
+    name: PHP ${{ matrix.php-versions }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update advanced packaging tools
+        run: sudo apt update
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: xdebug
+      - name: Install dependencies
+        run: composer self-update && composer install && composer dump-autoload
+      - name: Run tests
+        run: composer test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml

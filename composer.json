@@ -1,0 +1,31 @@
+{
+  "name": "ordinary9843/meta-master",
+  "description": "Analyzing and crawling the meta tags of a static website",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Software Engineer"
+    }
+  ],
+  "require": {
+    "php": ">7.1",
+    "guzzlehttp/guzzle": "^6.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ordinary9843\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "php vendor/bin/phpunit --coverage-clover ./coverage.xml --coverage-html ./report"
+  }
+}
